@@ -25,7 +25,8 @@ class Classification(object):
                 "greet"     : intent.HelloIntent(self, context),
                 "get_time"  : intent.GetTimeIntent(self, context),
                 "ask_joke"  : intent.JokeIntent(self, context),
-                "unknown"   : intent.UnKnownIntent(self, context)
+                "unknown"   : intent.UnKnownIntent(self, context),
+                "goodbye"     : intent.GoodbyeIntent(self, context)
             }
         
     

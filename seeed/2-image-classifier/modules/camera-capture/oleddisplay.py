@@ -21,76 +21,76 @@
 # Adapted from https://github.com/rm-hull/luma.examples/blob/master/examples/demo_opts.py
 #
 
-import logging
-import os
-import sys
+# import logging
+# import os
+# import sys
 
-from luma.core import cmdline, error
-import luma.core.virtual as lumac
-from PIL import ImageFont
+# from luma.core import cmdline, error
+# import luma.core.virtual as lumac
+# from PIL import ImageFont
 
 
-class OledDisplay(object):
+# class OledDisplay(object):
 
-    def __init__(self, font=None):
-        self.font = font if font else self.get_default_font()
-        self.device = self.get_device()
-        self.term = lumac.terminal(self.device, self.font, animate=False)
+#     def __init__(self, font=None):
+#         self.font = font if font else self.get_default_font()
+#         self.device = self.get_device()
+#         self.term = lumac.terminal(self.device, self.font, animate=False)
 
-    def println(self, text):
-        self.term.println(text)
+#     def println(self, text):
+#         self.term.println(text)
 
-    def get_default_font(self):
-        font_name = "FreePixel.ttf"
-        font_size = 9
-        font_path = os.path.abspath(os.path.join(
-            os.path.dirname(__file__), 'fonts', font_name))
-        return ImageFont.truetype(font_path, font_size)
+#     def get_default_font(self):
+#         font_name = "FreePixel.ttf"
+#         font_size = 9
+#         font_path = os.path.abspath(os.path.join(
+#             os.path.dirname(__file__), 'fonts', font_name))
+#         return ImageFont.truetype(font_path, font_size)
 
-    def display_settings(self, args):
-        """
-        Display a short summary of the settings.
+#     def display_settings(self, args):
+#         """
+#         Display a short summary of the settings.
 
-        :rtype: str
-        """
-        iface = ''
-        display_types = cmdline.get_display_types()
-        if args.display not in display_types['emulator']:
-            iface = 'Interface: {}\n'.format(args.interface)
+#         :rtype: str
+#         """
+#         iface = ''
+#         display_types = cmdline.get_display_types()
+#         if args.display not in display_types['emulator']:
+#             iface = 'Interface: {}\n'.format(args.interface)
 
-        lib_name = cmdline.get_library_for_display_type(args.display)
-        if lib_name is not None:
-            lib_version = cmdline.get_library_version(lib_name)
-        else:
-            lib_name = lib_version = 'unknown'
+#         lib_name = cmdline.get_library_for_display_type(args.display)
+#         if lib_name is not None:
+#             lib_version = cmdline.get_library_version(lib_name)
+#         else:
+#             lib_name = lib_version = 'unknown'
 
-        import luma.core
-        version = 'luma.{} {} (luma.core {})'.format(
-            lib_name, lib_version, luma.core.__version__)
+#         import luma.core
+#         version = 'luma.{} {} (luma.core {})'.format(
+#             lib_name, lib_version, luma.core.__version__)
 
-        return 'Version: {}\nDisplay: {}\n{}Dimensions: {} x {}\n{}'.format(
-            version, args.display, iface, args.width, args.height, '-' * 60)
+#         return 'Version: {}\nDisplay: {}\n{}Dimensions: {} x {}\n{}'.format(
+#             version, args.display, iface, args.width, args.height, '-' * 60)
 
-    def get_device(self, actual_args=None):
-        """
-        Create device from command-line arguments and return it.
-        """
-        if actual_args is None:
-            actual_args = sys.argv[1:]
-        parser = cmdline.create_parser(description='luma.examples arguments')
-        args = parser.parse_args(actual_args)
+#     def get_device(self, actual_args=None):
+#         """
+#         Create device from command-line arguments and return it.
+#         """
+#         if actual_args is None:
+#             actual_args = sys.argv[1:]
+#         parser = cmdline.create_parser(description='luma.examples arguments')
+#         args = parser.parse_args(actual_args)
 
-        if args.config:
-            # load config from file
-            config = cmdline.load_config(args.config)
-            args = parser.parse_args(config + actual_args)
+#         if args.config:
+#             # load config from file
+#             config = cmdline.load_config(args.config)
+#             args = parser.parse_args(config + actual_args)
 
-        print(self.display_settings(args))
+#         print(self.display_settings(args))
 
-        # create device
-        try:
-            device = cmdline.create_device(args)
-        except error.Error as e:
-            parser.error(e)
+#         # create device
+#         try:
+#             device = cmdline.create_device(args)
+#         except error.Error as e:
+#             parser.error(e)
 
-        return device
+#         return device

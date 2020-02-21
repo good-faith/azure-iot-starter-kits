@@ -39,6 +39,10 @@ class GetTimeIntent(Intent):
     def initCommands(self):
         self.commands.append(command.GetTimeCommand())
 
+class GoodbyeIntent(Intent):
+    def initCommands(self):
+        self.commands.append(command.GoodbyeCommand())
+
 class UnKnownIntent(Intent):
     def initCommands(self):
         self.commands.append(command.UnKnownCommand())

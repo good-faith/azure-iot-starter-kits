@@ -37,6 +37,20 @@ class GetTimeCommand(Command):
     def do(self, bot, entity):
         return datetime.datetime.now().strftime("It is %I:%M %p")
 
+class GoodbyeCommand(Command):
+    """
+    The command to say goodbye
+    """
+
+    def __init__(self):
+        """
+        Default constructor which will create list of goodbyes to be picked
+        randomly to make our bot more human-like
+        """
+        self.goodbyes = ["Goodbye.", "Hope to see you soon.", "Until we meet again.", "Safe travels."]
+
+    def do(self, bot, entity):
+        return(random.choice(self.goodbyes))
 
 class UnKnownCommand(Command):
     """
